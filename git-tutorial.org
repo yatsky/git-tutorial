@@ -16,51 +16,6 @@ CLOCK: [2020-06-10 Wed 14:43]--[2020-06-10 Wed 15:45] =>  1:02
 - If you want to know why you did what you did a year ago.
 - If you want to save time from manual debugging when latex freaks out again.
 - If you want no more "paper-final-final-final-final.tex".
-** How git works conceptually
-:PROPERTIES:
-:ID:       2e22c322-ce97-48e4-80d4-446023d11aee
-:END:
-:LOGBOOK:
-CLOCK: [2020-06-18 Thu 10:45]--[2020-06-18 Thu 10:47] =>  0:02
-CLOCK: [2020-06-17 Wed 21:59]--[2020-06-17 Wed 22:43] =>  0:44
-:END:
-
-#+BEGIN_SRC ditaa :file git-tutorial-flowchart.png :cmdline -r -s 2
- /--\
- |c | This is a commit
- \--/
-
-
-                      Time line
-  ------------------------------------------------------------>
-  Older changes                                       Newer changes
-
-               Recorded history                                       Works yet to be recorded
-  +-------------------------------------------------------+ +-----------------------------------------+
-  |  Works in this area are not supposed to be reverted   | |Works in this area can be reverted easily|
-  +-------------------------------------------------------+ +-----------------------------------------+
-  |   Recorded history                         New commit | |    Work area                            |
-  | +--------------------------------------+   +--------+ | | +--------------------------------------+|
-  | |                                      |   |        | | | |          |                           ||
-  | |                                      |   | New    | | | | Staging  |     Stash area            ||
-  | |                                      |   | Commit | | | | area     |                           ||
-  | |  /--\   /--\   /--\   /--\   /--\    |   | /--\   | | | |          |---------------------------||
-  | |  |c |-->|c |-->|c |-->|c |-->|c |--------->|c |<--------|          |                           ||
-  | |  \--/   \--/   \--/   \--/   \--/    |   | \--/   | | | |          |     Desktop/Work area/    ||
-  | |                                      |   |        | | | |          |     Mess                  ||
-  | |                                      |   |        | | | |          |                           ||
-  | |                                      |   |        | | | |          |                           ||
-  | +--------------------------------------+   +--------+ | | +--------------------------------------+|
-  |                                                       | |                                         |
-  |         git checkout                       git commit | |git add           git status             |
-  |                                            git status | |git status        git stash              |
-  |                                                       | |                                         |
-  +-------------------------------------------------------+ +-----------------------------------------+
-#+END_SRC
-
-#+RESULTS:
-[[file:git-tutorial-flowchart.png]]
-
 ** Prerequisites
 :PROPERTIES:
 :ID:       f4981486-0c63-49c7-8de0-9ed71436eb7c
@@ -178,6 +133,68 @@ cd ..
 
 #+name: Results:
 #+RESULTS: Results:
+
+** How git works conceptually
+:PROPERTIES:
+:ID:       2e22c322-ce97-48e4-80d4-446023d11aee
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-18 Thu 17:26]--[2020-06-18 Thu 17:38] =>  0:12
+CLOCK: [2020-06-18 Thu 10:45]--[2020-06-18 Thu 10:47] =>  0:02
+CLOCK: [2020-06-17 Wed 21:59]--[2020-06-17 Wed 22:43] =>  0:44
+:END:
+
+The changes we make to our files are meaningful to us (at least) at the moment they were made.
+What git does is help you record that change together with the meaning it carries.
+
+In the diagram below, we start from the lower right Desktop/Work area.
+We are provided with existing files that can be changed, experimented with, or deleted.
+We can also create new files if we want.
+Everything in this area can ephemeral and git does not care about it.
+
+Once we make some changes that we are happy with, we /stage/ those changes to the Staging area.
+This area prepares those specific changes to be /committed/ to the history that git keeps.
+We can /stage/ more changes to the Staging area from our Desktop, as long as we think they are related/coherent.
+
+Once we think that the changes in the Staging area are ready to go into the history that git keeps, we simply /commit/ them.
+During the commit process, we provide a /message/ that describes the meaning/purpose of the changes to be committed.
+(hence linking the meaning to changes).
+Then a new commit is made and recorded in the git history.
+#+BEGIN_SRC ditaa :file git-tutorial-flowchart.png :cmdline -r -s 2
+ /--\
+ |c | This is a commit
+ \--/
+
+
+                      Time line
+  ------------------------------------------------------------>
+  Older changes                                       Newer changes
+
+               Recorded history                                       Works yet to be recorded
+  +-------------------------------------------------------+ +-----------------------------------------+
+  |  Works in this area are not supposed to be reverted   | |Works in this area can be reverted easily|
+  +-------------------------------------------------------+ +-----------------------------------------+
+  |   Recorded history                         New commit | |    Work area                            |
+  | +--------------------------------------+   +--------+ | | +--------------------------------------+|
+  | |                                      |   |        | | | |          |                           ||
+  | |                                      |   | New    | | | | Staging  |     Stash area            ||
+  | |                                      |   | Commit | | | | area     |                           ||
+  | |  /--\   /--\   /--\   /--\   /--\    |   | /--\   | | | |          |---------------------------||
+  | |  |c |-->|c |-->|c |-->|c |-->|c |--------->|c |<--------|          |                           ||
+  | |  \--/   \--/   \--/   \--/   \--/    |   | \--/   | | | |          |     Desktop/Work area/    ||
+  | |                                      |   |        | | | |          |     Mess                  ||
+  | |                                      |   |        | | | |          |                           ||
+  | |                                      |   |        | | | |          |                           ||
+  | +--------------------------------------+   +--------+ | | +--------------------------------------+|
+  |                                                       | |                                         |
+  |         git checkout                       git commit | |git add           git status             |
+  |                                            git status | |git status        git stash              |
+  |                                                       | |                                         |
+  +-------------------------------------------------------+ +-----------------------------------------+
+#+END_SRC
+
+#+RESULTS:
+[[file:git-tutorial-flowchart.png]]
 
 ** ~git init .~
 :PROPERTIES:
