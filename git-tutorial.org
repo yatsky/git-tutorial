@@ -70,6 +70,24 @@ CLOCK: [2020-06-11 Thu 21:27]--[2020-06-11 Thu 21:28] =>  0:01
 CLOCK: [2020-06-11 Thu 16:03]--[2020-06-11 Thu 16:41] =>  0:38
 :END:
 
+*** Terminologies
+:LOGBOOK:
+CLOCK: [2020-06-18 Thu 19:12]--[2020-06-18 Thu 19:21] =>  0:09
+CLOCK: [2020-06-18 Thu 17:39]--[2020-06-18 Thu 17:52] =>  0:13
+:END:
+Here is a list of terminologies that you might find confusing, or that I think is worth mentioning.
+
+- file(s): a /file/ in git *usually* refers to a text-based file. Usually, if a file can be opened by Notepad (Windows) or TextEdit (Mac) and still readable by a human being, it's a text file. All $\LaTeX$ source files are text-based.
+- line(s): a /line/ in git is determined by a carriage. It is sometimes oversimplifyingly depicted as "\n" (not including quotes).
+- change(s): in the world of git, changes refer to the creation, deletion of files, or the addition or deletion of lines inside files.
+- ~cd~: this is a command that means (c)hange (d)irectory.
+- ~mkdir~: this is a command that means (m)a(k)e (dir)rectory.
+- commit: a record of the following:
+  - the changes we made
+  - the author who made the change
+  - the time we made the change
+  - explanation (message) on the changes
+*** Commands
 To make this tutorial self-contained, I used some commands that are not git-related.
 Please be aware that you are not expected to know anything that does not start with ~git~ in this tutorial except for the following:
 
