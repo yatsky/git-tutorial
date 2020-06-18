@@ -1,8 +1,9 @@
+#+SETUPFILE: ../theme-readtheorg.setup
 #+LATEX_HEADER: \documentclass{report}
 #+LATEX_CLASS_OPTIONS: [a4paper]
 #+LATEX_HEADER: \usepackage{minted}
-+LATEX_HEADER: \usemintedstyle{friendly}
 #+LATEX_HEADER: \usepackage[total={170mm,257mm},left=20mm,right=20mm]{geometry}
+#+author: Yi Wang
 * Git Tutorial
 :PROPERTIES:
 :ID:       cb36a6d5-b776-41b3-b829-5802164656cf
