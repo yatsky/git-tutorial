@@ -1269,10 +1269,10 @@ git commit -m "Explain why we need git"
 
 #+RESULTS: Results: add and commit
 #+name: Results: add and commit
-:results:
+#+begin_src bash -n
 [master 7f3f739] Explain why we need git
 1 file changed, 1 insertion(+)
-:end:
+#+end_src
 
 #+begin_src bash -n  :dir /tmp/working-paper :results output replace code
 git blame my-great-paper.tex
