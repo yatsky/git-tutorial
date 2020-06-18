@@ -1,0 +1,1266 @@
+#+LATEX_HEADER: \documentclass{report}
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage{minted}
++LATEX_HEADER: \usemintedstyle{friendly}
+#+LATEX_HEADER: \usepackage[total={170mm,257mm},left=20mm,right=20mm]{geometry}
+* Git Tutorial
+:PROPERTIES:
+:ID:       cb36a6d5-b776-41b3-b829-5802164656cf
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-12 Fri 08:37]--[2020-06-12 Fri 09:14] =>  0:37
+CLOCK: [2020-06-10 Wed 14:43]--[2020-06-10 Wed 15:45] =>  1:02
+:END:
+- If you want to know whom to +blame+ (thank!) for the great choice of words.
+- If you want to know why you did what you did a year ago.
+- If you want to save time from manual debugging when latex freaks out again.
+- If you want no more "paper-final-final-final-final.tex".
+** How git works conceptually
+:PROPERTIES:
+:ID:       2e22c322-ce97-48e4-80d4-446023d11aee
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-17 Wed 21:59]--[2020-06-17 Wed 22:43] =>  0:44
+:END:
+
+#+BEGIN_SRC ditaa :file git-tutorial-flowchart.png :cmdline -r -s 2
+ /--\
+ |c | This is a commit
+ \--/
+
+    +--------------------------------------+   +--------+   +--------------------------------------+
+    |                                      |   |        |   |          |                           |
+    |                                      |   | New    |   | Staging  |     Stash area            |
+    |                                      |   | Commit |   | area     |                           |
+    |  /--\   /--\   /--\   /--\   /--\    |   | /--\   |   |          |---------------------------|
+    |  |c |-->|c |-->|c |-->|c |-->|c |--------->|c |   |   |          |                           |
+    |  \--/   \--/   \--/   \--/   \--/    |   | \--/   |   |          |     Desktop/Work area/    |
+    |                                      |   |        |   |          |     Mess                  |
+    |                                      |   |        |   |          |                           |
+    |                                      |   |        |   |          |                           |
+    +--------------------------------------+   +--------+   +--------------------------------------+
+
+            git checkout                       git commit    git add           git status
+                                               git status    git status        git stash
+#+END_SRC
+
+#+RESULTS:
+[[file:git-tutorial-flowchart.png]]
+
+** Prerequisites
+:PROPERTIES:
+:ID:       f4981486-0c63-49c7-8de0-9ed71436eb7c
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 21:27]--[2020-06-11 Thu 21:28] =>  0:01
+CLOCK: [2020-06-11 Thu 16:03]--[2020-06-11 Thu 16:41] =>  0:38
+:END:
+
+To make this tutorial self-contained, I used some commands that are not git-related.
+Please be aware that you are not expected to know anything that does not start with ~git~ in this tutorial except for the following:
+
+#+name: make a directory
+#+caption: make a directory
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+mkdir data
+#+end_src
+
+#+name: Results: make a directory
+#+RESULTS: Results: make a directory
+#+begin_src bash
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+
+#+name: list the conents of a directory
+#+caption: list the conents of a directory
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+ls
+#+end_src
+
+#+name: Results: list the conents of a directory
+#+RESULTS: Results: list the conents of a directory
+#+begin_src bash
+data
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+#+name: change directory
+#+caption: change directory
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+cd data
+#+end_src
+
+#+name: Results: change directory
+#+RESULTS: Results: change directory
+#+begin_src bash
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+#+name: perhaps create an empty file as well
+#+caption: perhaps create an empty file as well
+#+begin_src bash :dir /tmp/working-paper/data :results output replace code
+touch some_data.txt
+#+end_src
+
+#+name: Results: perhaps create an empty file as well
+#+RESULTS: Results: perhaps create an empty file as well
+#+begin_src bash
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+#+name: now list the contents of the directory again
+#+caption: now list the contents of the directory again
+#+begin_src bash :dir /tmp/working-paper/data :results output replace code
+ls
+#+end_src
+
+#+name: Results: now list the contents of the directory again
+#+RESULTS: Results: now list the contents of the directory again
+#+begin_src bash
+some_data.txt
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+#+name: now go back to the root directory
+#+caption: now go back to the root directory
+#+begin_src bash :dir /tmp/working-paper/data :results output replace code
+# .. means parent directory
+cd ..
+#+end_src
+
+#+name: Results: now go back to the root directory
+#+RESULTS: Results: now go back to the root directory
+#+begin_src bash
+#+end_src
+
+#+name: Results:
+#+RESULTS: Results:
+
+** ~git init .~
+:PROPERTIES:
+:ID:       ee19226c-cbc3-4d8c-aa3f-b8dbea965d59
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 18:35]--[2020-06-11 Thu 18:37] =>  0:02
+CLOCK: [2020-06-11 Thu 18:30]--[2020-06-11 Thu 18:34] =>  0:04
+CLOCK: [2020-06-11 Thu 18:16]--[2020-06-11 Thu 18:26] =>  0:10
+:END:
+We have a project directory called ~working-paper~ and there is a ~data~ folder in it from [[*Prerequisites]].
+#+name: show the initial documents
+#+caption: show the initial documents
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+ls
+#+end_src
+
+#+name: Results: show the initial documents
+#+RESULTS: Results: show the initial documents
+#+begin_src bash
+data
+#+end_src
+
+To start using git,
+we init(ialize) the directory ~working-paper~.
+This only needs to be done once per project.
+#+name: git init(ialize)
+#+caption: git init(ialize)
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git init .
+#+end_src
+
+#+name: Results: git init(ialize)
+#+RESULTS: Results: git init(ialize)
+#+begin_src bash
+Initialized empty Git repository in /tmp/working-paper/.git/
+#+end_src
+
+We can choose to set up a few details about us for the project.
+
+If we don't do this, git will try its best to come up with the values from what it reads from your profile.
+
+#+name: tell git something about us
+#+caption: tell git something about us
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git config user.name "Yi Wang"
+git config user.email "wangy95@qut.edu.au"
+#+end_src
+
+#+name: Results: tell git something about us
+#+RESULTS: Results: tell git something about us
+#+begin_src bash
+#+end_src
+
+We then check if git knows who we are.
+#+name: ask git who we are
+#+caption: ask git who we are
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git config user.name
+git config user.email
+#+end_src
+
+#+name: Results: ask git who we are
+#+RESULTS: Results: ask git who we are
+#+begin_src bash
+Yi Wang
+wangy95@qut.edu.au
+#+end_src
+
+Congratulations! We now have set up the basics!
+** ~git status~
+:PROPERTIES:
+:ID:       67d23768-88d9-47ac-b626-8f38025b9bfb
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 18:37]--[2020-06-11 Thu 18:58] =>  0:21
+:END:
+
+The second command we want to master is ~git status~.
+As the name suggests, it reports /current status/ of the project.
+#+name: using git status for the first time
+#+caption: using git status for the first time
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: using git status for the first time
+#+RESULTS: Results: using git status for the first time
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	data/
+
+nothing added to commit but untracked files present (use "git add" to track)
+#+end_src
+
+Here is a line-by-line explanation through the above feedback that ~git status~ gives you.
+#+begin_src bash
+# You can have any number of branches
+# so git status lets you know which branch you are working on
+On branch master
+
+# Because this is a new project,
+# we haven't committed anything.
+# We will cover committing in the next section.
+No commits yet
+
+# Untracked means changes to these files are invisible to git,
+# other than git knows that these files themselves exist
+Untracked files:
+  # Git is trying to prompt you that
+  # you can use this command to track the file(s)
+  (use "git add <file>..." to include in what will be committed)
+
+  # The slash (/) means this is a directory.
+  # Git only cares about directories that have files.
+	data/
+
+# A short summary of what our current status is
+nothing added to commit but untracked files present (use "git add" to track)
+#+end_src
+
+I recommend that whenever you want to do ~git add~ and/or ~git commit~ from the following sections, you first run ~git status~ to get an idea of where you are at.
+** ~git add file~
+:PROPERTIES:
+:ID:       743264e2-7dac-4899-8804-3cffd5a14198
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 19:08]--[2020-06-11 Thu 19:40] =>  0:32
+:END:
+We now have a data file in the directory ~data~
+and it's time that we ask git to track (monitor) it for us.
+#+name: git add for the first time
+#+caption: git add for the first time
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add data/some_data.txt
+#+end_src
+
+#+name: Results: git add for the first time
+#+RESULTS: Results: git add for the first time
+#+begin_src bash
+#+end_src
+~git add~ does not give us any feedback so let's use ~git status~ to see what is our /status/ now.
+#+name: git status after git add
+#+caption: git status after git add
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after git add
+#+RESULTS: Results: git status after git add
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+
+#+end_src
+
+The result seems similar to what we had [[Results: using git status for the first time][previously]], but certain words have changed, so here is another line-by-line explanation of what is going on.
+#+begin_src bash
+# We are still on branch master.
+On branch master
+
+# We still haven't made any commits yet.
+No commits yet
+
+# We have changes that can be committed.
+Changes to be committed:
+  # Git tells us that we can use this command
+  # to un-add (unstage) the file.
+  (use "git rm --cached <file>..." to unstage)
+
+  # Git now sees the file and recognizes it as a new file. 
+	new file:   data/some_data.txt
+
+#+end_src
+
+It is worth noting that, in our case, ~git add data/some_data.txt~ is the same as ~git add data/~ because git does not track empty directories by default and ~data~ only has one file ~some_data.txt~. 
+
+We then need to create more files for our paper.
+For starters, we want a file called ~my-great-paper.tex~ in the project root directory.
+#+name: create main paper file
+#+caption: create main paper file
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+touch my-great-paper.tex
+#+end_src
+
+#+name: Results: create main paper file
+#+RESULTS: Results: create main paper file
+#+begin_src bash
+#+end_src
+
+We again use ~git status~ to check what is going on.
+#+name: git status after adding paper file
+#+caption: git status after adding paper file
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after adding paper file
+#+RESULTS: Results: git status after adding paper file
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	my-great-paper.tex
+
+#+end_src
+The above result is kind of what we could understand.
+We have added a new file called /my-great-paper.tex/ and it's not tracked by git yet.
+
+We now add (stage) it to git.
+#+name: add main paper file to git
+#+caption: add main paper file to git
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add my-great-paper.tex
+#+end_src
+
+#+name: Results: add main paper file to git
+#+RESULTS: Results: add main paper file to git
+#+begin_src bash
+#+end_src
+
+Again, we use ~git status~ to check our status.
+#+name: git status after staging main paper file
+#+caption: git status after staging main paper file
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after staging main paper file
+#+RESULTS: Results: git status after staging main paper file
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+	new file:   my-great-paper.tex
+
+#+end_src
+We now have two files /staged/ using ~git add~.
+
+There is certainly more to the project than we have at the moment, so I'm going to add two more files. One called ~references.bib~ for all our references and another called ~meeting-minutes.txt~ that might record some useful information.
+#+name: add two more files
+#+caption: add two more files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+touch references.bib
+touch meeting-minutes.txt
+#+end_src
+
+#+RESULTS: Results: add two more files
+#+begin_src bash
+#+end_src
+
+And we *always* rely on ~git status~.
+#+name: git status after adding two more files
+#+caption: git status after adding two more files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after adding two more files
+#+RESULTS: Results: git status after adding two more files
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+	new file:   my-great-paper.tex
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	meeting-minutes.txt
+	references.bib
+
+#+end_src
+We add (stage) these two files together by listing them after the
+~git add~ command (of course you can have more than two files to add/stage).
+#+name: git add two files together
+#+caption: git add two files together
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add meeting-minutes.txt references.bib
+#+end_src
+
+#+name: Results: git add two files together
+#+RESULTS: Results: git add two files together
+#+begin_src bash
+#+end_src
+
+~git status~
+#+name: git status after staging the two new files
+#+caption: git status after staging the two new files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after staging the two new files
+#+RESULTS: Results: git status after staging the two new files
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+	new file:   meeting-minutes.txt
+	new file:   my-great-paper.tex
+	new file:   references.bib
+
+#+end_src
+
+One last thing about ~git add~ is that you can do all of the above 
+in one command *when you are sure that they should be grouped together as one coherent change*.
+
+To demonstrate this functionality, we again create some files for our project.
+#+name: add some more files for the project
+#+caption: add some more files for the project
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+mkdir misc
+cd misc
+touch contact-numbers.csv
+touch experiment-expenditures.csv
+#+end_src
+
+~git status~ again.
+#+name: git status after misc files
+#+caption: git status after misc files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after misc files
+#+RESULTS: Results: git status after misc files
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+	new file:   meeting-minutes.txt
+	new file:   my-great-paper.tex
+	new file:   references.bib
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	misc/
+
+#+end_src
+
+We can now use ~git add .~ to stage/add these newly created files all together.
+
+#+name: git add .
+#+caption: git add .
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add .
+#+end_src
+
+#+name: Results: git add .
+#+RESULTS: Results: git add .
+#+begin_src bash
+#+end_src
+
+~git status~ again.
+#+name: git status after staging misc files
+#+caption: git status after staging misc files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after staging misc files
+#+RESULTS: Results: git status after staging misc files
+#+begin_src bash
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   data/some_data.txt
+	new file:   meeting-minutes.txt
+	new file:   misc/contact-numbers.csv
+	new file:   misc/experiment-expenditures.csv
+	new file:   my-great-paper.tex
+	new file:   references.bib
+
+#+end_src
+
+We are finally ready to conduct our first commit!
+** ~git commit -m "Commit message"~
+:PROPERTIES:
+:ID:       06f2cf8b-5182-44e2-8de4-11447ce1c77a
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 20:08]--[2020-06-11 Thu 20:12] =>  0:04
+CLOCK: [2020-06-11 Thu 19:47]--[2020-06-11 Thu 20:07] =>  0:20
+:END:
+We can now finally /commit/ our changes, which means that these changes will be written in your history book and no one can fake it.
+
+To do this, we use ~git commit~.
+The following example uses ~git commit -m "message"~.
+In case you haven't figured it out already, ~-m~ stands for /message/.
+This /message/ you provide is the message that helps you from a year later to understand why you did what you did.
+
+If you feel like you need to do a lot of explaining, we will cover how to provide a long message [[FAQs][later]].
+For now, we just provide a short message for the start of our project.
+#+name: our first commit!
+#+caption: our first commit!
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git commit -m "The starting point of our new paper!"
+#+end_src
+
+#+name: Results: our first commit!
+#+RESULTS: Results: our first commit!
+#+begin_src bash
+[master (root-commit) 0c9b8bd] The starting point of our new paper!
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 data/some_data.txt
+ create mode 100644 meeting-minutes.txt
+ create mode 100644 misc/contact-numbers.csv
+ create mode 100644 misc/experiment-expenditures.csv
+ create mode 100644 my-great-paper.tex
+ create mode 100644 references.bib
+#+end_src
+Now we've written a lot of stuff in the history book *at once* and this history is reflected by this value ~0c9b8bd~.
+
+There is no need to remember/know this value whatsoever because we can always find it. To do that and to read the history book we just wrote, we need to take a little detour to another command called ~git log~.
+
+~git log~, as its name suggests, reports a log of what we did in the past.
+The output is a list of /commits/ that we made.
+#+name: git log for the first time
+#+caption: git log for the first time
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log
+#+end_src
+
+#+name: Results: git log for the first time
+#+RESULTS: Results: git log for the first time
+#+begin_src bash
+commit 0c9b8bd37772d407642b8f84b747e8f45072cbb3
+Author: Yi Wang <wangy95@qut.edu.au>
+Date:   Thu Jun 11 19:52:12 2020 +1000
+
+    The starting point of our new paper!
+#+end_src
+In the above results, we see the familiar value ~0c9b8bd~ as the starting characters of the line ~commit 0c9b8bd37772d407642b8f84b747e8f45072cbb3~. This means that this commit is identifiable by this strange.
+The ~Author~ line shows the information we gave git in [[*Prerequisites]], followed by a date stamp. Finally, it comes with the commit message that we gave it earlier.
+
+There is a lot to the ~git log~ command (as well as other commands), but here I provide some variations of it to help you get started fast.
+
+Only show one line per commit.
+#+name: git log oneline
+#+caption: git log oneline
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log --oneline
+#+end_src
+
+#+name: Results: git log oneline
+#+RESULTS: Results: git log oneline
+#+begin_src bash
+0c9b8bd The starting point of our new paper!
+#+end_src
+
+Get some colors if your command line doesn't do it already.
+(Unfortunately this result can not be seen here).
+#+name: git log color
+#+caption: git log color
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log --color
+#+end_src
+
+#+name: Results: git log color
+#+RESULTS: Results: git log color
+#+begin_src bash
+commit 0c9b8bd37772d407642b8f84b747e8f45072cbb3
+Author: Yi Wang <wangy95@qut.edu.au>
+Date:   Thu Jun 11 19:52:12 2020 +1000
+
+    The starting point of our new paper!
+#+end_src
+
+Of course you can combine them.
+#+name: git log oneline color
+#+caption: git log oneline color
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log --oneline --color
+#+end_src
+
+#+name: Results: git log oneline color
+#+RESULTS: Results: git log oneline color
+#+begin_src bash
+33m0c9b8bd The starting point of our new paper!
+#+end_src
+** Putting it together
+:PROPERTIES:
+:ID:       32bbf24b-04b7-42b5-bb42-42fdef2d5c1a
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 20:36]--[2020-06-11 Thu 21:05] =>  0:29
+:END:
+We now demonstrate how ~git status~, ~git add~ and ~git commit~ work together in a basic workflow.
+
+Starting off, we run ~git status~ to make sure that there is no changes from previous work that we haven't dealt with.
+#+name: workflow git status pre-check
+#+caption: workflow git status pre-check
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: workflow git status pre-check
+#+RESULTS: Results: workflow git status pre-check
+#+begin_src bash
+On branch master
+nothing to commit, working tree clean
+#+end_src
+
+Then we make some changes to our files.
+I'm going to write something to ~my-great-paper.tex~ file.
+#+name: workflow write to file
+#+caption: workflow write to file
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+echo "% This is my first paper written with the help of git\n%And I hope it all works out.\n" > my-great-paper.tex
+#+end_src
+
+#+name: Results: workflow write to file
+#+RESULTS: Results: workflow write to file
+#+begin_src bash
+#+end_src
+
+Let's see if the change was successful by ~git status~.
+#+name: workflow git status check if write is successful
+#+caption: workflow git status check if write is successful
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: workflow git status check if write is successful
+#+RESULTS: Results: workflow git status check if write is successful
+#+begin_src bash
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   my-great-paper.tex
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#+end_src
+
+Optionally, we can use ~git diff~ to see what has been changed.
+#+name: workflow git diff
+#+caption: workflow git diff
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git diff my-great-paper.tex
+#+end_src
+
+#+name: Results: workflow git diff
+#+RESULTS: Results: workflow git diff
+#+begin_src bash
+diff --git a/my-great-paper.tex b/my-great-paper.tex
+index e69de29..a73bcc6 100644
+--- a/my-great-paper.tex
++++ b/my-great-paper.tex
+@@ -0,0 +1 @@
++% This is my first paper written with the help of git\n%And I hope it all works out.
+#+end_src
+Here's some explanation of what happened.
+#+begin_src bash
+# Git is comparing what you just did
+# to what the last commit had for the file
+# my-great-paper.tex.
+diff --git a/my-great-paper.tex b/my-great-paper.tex
+index e69de29..a73bcc6 100644
+--- a/my-great-paper.tex
++++ b/my-great-paper.tex
+@@ -0,0 +1 @@
+# + means this is added.
++% This is my first paper written with the help of git\n%And I hope it all works out.
+#+end_src
+
+We are sure that this change is what we need so we stage it.
+#+name: workflow git add to stage 1
+#+caption: workflow git add to stage 1
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add .
+#+end_src
+
+#+name: Results: workflow git add to stage 1
+#+RESULTS: Results: workflow git add to stage 1
+#+begin_src bash
+#+end_src
+#+name: workflow git status 3
+#+caption: workflow git status 3
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: workflow git status 3
+#+RESULTS: Results: workflow git status 3
+#+begin_src bash
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   my-great-paper.tex
+
+#+end_src
+In the above results, git knows we changed our /existing/ file ~my-great-paper.tex~ so it shows that it's /modified/. Here, /existing/ means it's tracked by git.
+
+We are happy to commit this staged change.
+#+name: workflow git commit 1
+#+caption: workflow git commit 1
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git commit -m "Add comments in the paper to celebrate first use of git"
+#+end_src
+
+#+name: Results: workflow git commit 1
+#+RESULTS: Results: workflow git commit 1
+#+begin_src bash
+[master 58bbd26] Add comments in the paper to celebrate first use of git
+ 1 file changed, 1 insertion(+)
+#+end_src
+
+We repeat this to add template from QUT to the file.
+#+name: add more contents to the main file
+#+caption: add more contents to the main file
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+cat /mnt/c/Users/thoma/Dev/orgs/brain/Work/ThesisMainFile.tex >> my-great-paper.tex
+#+end_src
+
+#+name: Results: add more contents to the main file
+#+RESULTS: Results: add more contents to the main file
+#+begin_src bash
+#+end_src
+
+Routine check.
+#+name: workflow git status 4
+#+caption: workflow git status 4
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: workflow git status 4
+#+RESULTS: Results: workflow git status 4
+#+begin_src bash
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   my-great-paper.tex
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#+end_src
+
+Running ~git diff~ now would output a lot of text, so I'm truncating it down a bit to 15 lines just to fit this tutorial. Your command line can display the output fine.
+#+name: git diff truncated
+#+caption: git diff truncated
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git diff | head -n 15
+#+end_src
+
+#+name: Results: git diff truncated
+#+RESULTS: Results: git diff truncated
+#+begin_src bash
+diff --git a/my-great-paper.tex b/my-great-paper.tex
+index a73bcc6..503f2f7 100644
+--- a/my-great-paper.tex
++++ b/my-great-paper.tex
+@@ -1 +1,55 @@
+ % This is my first paper written with the help of git\n%And I hope it all works out.
++\documentclass[12pt,twoside,a4paper,openright]{report}
++\usepackage{qutthesis}
++\usepackage{amsmath}
++\usepackage{amssymb}
++%\usepackage{amsart}
++\usepackage{verbatim}
++%\usepackage{nomencl}
++\usepackage{longtable}
++\usepackage{hyperref}
+#+end_src
+You can see that a lot of contents have been added.
+
+It is worth mentioning that the amount of the contents does not determine when you should stage and commit. Instead, you need to stage and commit when you finish a coherent part.
+
+For example, all I did in the this change was /adding template text/, which I think is a coherent part no matter how many lines it has.
+
+This way of thinking actually helps you to organize your writing/work better because it forces you to divide your work into small chunks that are easier to tackle.
+
+After saying all that, we can now simply ~git add~ and ~git commit~.
+#+name: git add template
+#+caption: git add template
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add .
+#+end_src
+
+#+name: Results: git add template
+#+RESULTS: Results: git add template
+#+begin_src bash
+#+end_src
+
+#+name: git commit template
+#+caption: git commit template
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git commit -m "Add template text from QUT"
+#+end_src
+
+#+name: Results: git commit template
+#+RESULTS: Results: git commit template
+#+begin_src bash
+[master af3e0ec] Add template text from QUT
+ 1 file changed, 54 insertions(+)
+#+end_src
+
+And now if we check our log.
+#+name: git log check more commits
+#+caption: git log check more commits
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log
+#+end_src
+
+#+name: Results: git log check more commits
+#+RESULTS: Results: git log check more commits
+#+begin_src bash
+commit af3e0ec5d969d3fe3bab819678512fefdbf49bc0
+Author: Yi Wang <wangy95@qut.edu.au>
+Date:   Thu Jun 11 21:05:28 2020 +1000
+
+    Add template text from QUT
+
+commit 58bbd2665b24a617452cbdc9ec8c7e307d961c71
+Author: Yi Wang <wangy95@qut.edu.au>
+Date:   Thu Jun 11 20:49:58 2020 +1000
+
+    Add comments in the paper to celebrate first use of git
+
+commit 0c9b8bd37772d407642b8f84b747e8f45072cbb3
+Author: Yi Wang <wangy95@qut.edu.au>
+Date:   Thu Jun 11 19:52:12 2020 +1000
+
+    The starting point of our new paper!
+#+end_src
+** Going back in history
+:PROPERTIES:
+:ID:       2dad402e-640e-48bd-9216-2f5c4d9f99c0
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 22:01]--[2020-06-11 Thu 22:04] =>  0:03
+CLOCK: [2020-06-11 Thu 21:29]--[2020-06-11 Thu 21:54] =>  0:25
+:END:
+Our project now has 3 commits, wow!
+
+Now I'll copy the rest of the template to the current folder to make it easier for us to work with.
+#+name: copy all template files
+#+caption: copy all template files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+cp -r /mnt/c/Users/thoma/Dev/orgs/brain/Work/QUTThesisTemplate .
+#+end_src
+
+#+name: Results: copy all template files
+#+RESULTS: Results: copy all template files
+#+begin_src bash
+#+end_src
+
+#+name: git status to check for all template files
+#+caption: git status to check for all template files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status to check for all template files
+#+RESULTS: Results: git status to check for all template files
+#+begin_src bash
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	QUTThesisTemplate/
+
+nothing added to commit but untracked files present (use "git add" to track)
+#+end_src
+#+name: git add new template files
+#+caption: git add new template files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add QUTThesisTemplate
+#+end_src
+
+#+name: Results: git add new template files
+#+RESULTS: Results: git add new template files
+#+begin_src bash
+#+end_src
+
+#+name: git status after staging new template files
+#+caption: git status after staging new template files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after staging new template files
+#+RESULTS: Results: git status after staging new template files
+#+begin_src bash
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   QUTThesisTemplate/Appendix.tex
+	new file:   QUTThesisTemplate/Ch0FrontPart.tex
+	new file:   QUTThesisTemplate/Ch1Introduction.tex
+	new file:   QUTThesisTemplate/Ch2LiteratureReview.tex
+	new file:   QUTThesisTemplate/Ch3.tex
+	new file:   QUTThesisTemplate/Ch4.tex
+	new file:   QUTThesisTemplate/Ch5.tex
+	new file:   QUTThesisTemplate/Ch6Conclusions.tex
+	new file:   QUTThesisTemplate/DelayS.eps
+	new file:   QUTThesisTemplate/DelayS.png
+	new file:   QUTThesisTemplate/QUTLogo.eps
+	new file:   QUTThesisTemplate/QUTLogo.png
+	new file:   QUTThesisTemplate/References.bib
+	new file:   QUTThesisTemplate/ThesisMainFile.pdf
+	new file:   QUTThesisTemplate/ThesisMainFile.tex
+	new file:   QUTThesisTemplate/nomenclature.tex
+	new file:   QUTThesisTemplate/qutthesis.sty
+
+#+end_src
+Commit all template files.
+#+name: git commit new template files
+#+caption: git commit new template files
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git commit -m "Add all template files"
+#+end_src
+
+#+name: Results: git commit new template files
+#+RESULTS: Results: git commit new template files
+#+begin_src bash
+[master 5980162] Add all template files
+ 17 files changed, 4671 insertions(+)
+ create mode 100755 QUTThesisTemplate/Appendix.tex
+ create mode 100755 QUTThesisTemplate/Ch0FrontPart.tex
+ create mode 100755 QUTThesisTemplate/Ch1Introduction.tex
+ create mode 100755 QUTThesisTemplate/Ch2LiteratureReview.tex
+ create mode 100755 QUTThesisTemplate/Ch3.tex
+ create mode 100755 QUTThesisTemplate/Ch4.tex
+ create mode 100755 QUTThesisTemplate/Ch5.tex
+ create mode 100755 QUTThesisTemplate/Ch6Conclusions.tex
+ create mode 100755 QUTThesisTemplate/DelayS.eps
+ create mode 100755 QUTThesisTemplate/DelayS.png
+ create mode 100755 QUTThesisTemplate/QUTLogo.eps
+ create mode 100755 QUTThesisTemplate/QUTLogo.png
+ create mode 100755 QUTThesisTemplate/References.bib
+ create mode 100755 QUTThesisTemplate/ThesisMainFile.pdf
+ create mode 100755 QUTThesisTemplate/ThesisMainFile.tex
+ create mode 100755 QUTThesisTemplate/nomenclature.tex
+ create mode 100755 QUTThesisTemplate/qutthesis.sty
+#+end_src
+
+Modify ~my-great-paper.tex~ so it can properly reference the separate files in ~QUTThesisTemplate~ directory.
+
+After the modification, run ~git status~.
+#+name: git status after modification
+#+caption: git status after modification
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git status
+#+end_src
+
+#+name: Results: git status after modification
+#+RESULTS: Results: git status after modification
+#+begin_src bash
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   my-great-paper.tex
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#+end_src
+
+Optionally run ~git diff~ to see what's changed.
+#+name: git diff optionl
+#+caption: git diff optionl
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git diff
+#+end_src
+
+#+name: Results: git diff optionl
+#+RESULTS: Results: git diff optionl
+#+begin_src bash
+diff --git a/my-great-paper.tex b/my-great-paper.tex
+index 503f2f7..efe322e 100644
+--- a/my-great-paper.tex
++++ b/my-great-paper.tex
+@@ -21,20 +21,20 @@
+ \begin{document}
+ 
+ %%%%%%%%%% Front Part: Cover page, abstract, ack, preface
+-\include{./Ch0FrontPart}           %Ch0FrontPart.tex
++\include{./QUTThesisTemplate/Ch0FrontPart}           %Ch0FrontPart.tex
+                                    %   including title page information, abstract,
+                                    %   acknowledgement, etc
+ %%% Body Text
+-\include{./Ch1Introduction}        %Ch1Introduction.tex
+-\include{./Ch2LiteratureReview}    %Ch2LiteratureReview.tex
+-\include{./Ch3}                    %Ch3.tex
+-\include{./Ch4}                    %Ch4.tex
+-\include{./Ch5}                    %Ch5.tex
+-\include{./Ch6Conclusions}         %Ch6Conclusions.tex
++\include{./QUTThesisTemplate/Ch1Introduction}        %Ch1Introduction.tex
++\include{./QUTThesisTemplate/Ch2LiteratureReview}    %Ch2LiteratureReview.tex
++\include{./QUTThesisTemplate/Ch3}                    %Ch3.tex
++\include{./QUTThesisTemplate/Ch4}                    %Ch4.tex
++\include{./QUTThesisTemplate/Ch5}                    %Ch5.tex
++\include{./QUTThesisTemplate/Ch6Conclusions}         %Ch6Conclusions.tex
+ 
+ %%%%%%%%%%%Appendix
+ % If you don't have any appendix, comment the following line out
+-\include{./Appendix}
++\include{./QUTThesisTemplate/Appendix}
+ 
+ %%%%%%%%%%%%References
+ % The default heading for references is ``Literature Cited''
+@@ -52,4 +52,5 @@
+ \newpage
+ ~~
+ \cleardoublepage
+-\end{document}
+\ No newline at end of file
++\end{document}
++
+#+end_src
+
+We now use ~git add~ and ~git commit~ to stage and commit the changes.
+I'm going to use them together in this example.
+#+name: git add and git commit together
+#+caption: git add and git commit together
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git add .
+git commit -m "Properly reference other files in the main tex file"
+#+end_src
+
+#+name: Results: git add and git commit together
+#+RESULTS: Results: git add and git commit together
+#+begin_src bash
+[master 1c439a9] Properly reference other files in the main tex file
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+#+end_src
+Git considers changes in terms of lines, so changing
+~\include{./Appendix}~
+to ~\include{./QUTThesisTemplate/Appendix}~, even on the same line, is considered first deleting the original line, and then insert the new line.
+
+We now have some more history to go back to.
+#+name: git log more history
+#+caption: git log more history
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log --oneline
+#+end_src
+
+#+name: Results: git log more history
+#+RESULTS: Results: git log more history
+#+begin_src bash
+1c439a9 Properly reference other files in the main tex file
+5980162 Add all template files
+af3e0ec Add template text from QUT
+58bbd26 Add comments in the paper to celebrate first use of git
+0c9b8bd The starting point of our new paper!
+#+end_src
+To go back to a previous version (history), simply use ~git checkout~.
+For example, we want to go back to ~af3e0ec Add template text from QUT~.
+#+name: git checkout for the first time!
+#+caption: git checkout for the first time!
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git checkout af3e0ec
+#+end_src
+
+#+name: Results: git checkout for the first time!
+#+RESULTS: Results: git checkout for the first time!
+#+begin_src bash
+#+end_src
+Then we run ~git log~ again.
+We can see that we are at commit ~af3e0ec~ (this commit is at the top of the result from ~git log~).
+#+name: git log after going back to commit
+#+caption: git log after going back to commit
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git log --oneline
+#+end_src
+
+#+name: Results: git log after going back to commit
+#+RESULTS: Results: git log after going back to commit
+#+begin_src bash
+af3e0ec Add template text from QUT
+58bbd26 Add comments in the paper to celebrate first use of git
+0c9b8bd The starting point of our new paper!
+#+end_src
+To prove that, we can check our current working directory.
+#+name: check current working directory
+#+caption: check current working directory
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+ls
+#+end_src
+
+#+name: Results: check current working directory
+#+RESULTS: Results: check current working directory
+#+begin_src bash
+data
+meeting-minutes.txt
+misc
+my-great-paper.tex
+references.bib
+test
+#+end_src
+We can see that the ~QUTThesisTemplate~ directory is gone!
+We have successfully made it back in time!
+** ~git blame~
+:PROPERTIES:
+:ID:       07509132-7bb2-44c0-8491-d7b01cf3669f
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 16:46]--[2020-06-11 Thu 16:51] =>  0:05
+:END:
+Suppose someone edited our great paper...
+#+name: someone edits this great paper
+#+caption: someone edits this great paper
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+echo "Catch me if you can" >> my-great-paper.tex
+#+end_src
+
+#+RESULTS: Results: someone edits this great paper
+#+name: Results: someone edits this great paper
+#+begin_src bash
+#+end_src
+
+And then the changes are staged (added) and commited.
+#+name: add and commit
+#+caption: add and commit
+#+begin_src bash :dir /tmp/working-paper :results output replace drawer
+git add .
+git commit -m "Explain why we need git"
+#+end_src
+
+#+RESULTS: Results: add and commit
+#+name: Results: add and commit
+:results:
+[master 7f3f739] Explain why we need git
+1 file changed, 1 insertion(+)
+:end:
+
+#+begin_src bash :dir /tmp/working-paper :results output replace code
+git blame my-great-paper.tex
+#+end_src
+
+#+RESULTS: Results:
+#+name: Results:
+#+begin_src bash
+7f3f739b (Yi Wang 2020-06-11 16:51:08 +1000 1) Catch me if you can
+#+end_src
+
+
+** ~git push origin master~
+:PROPERTIES:
+:ID:       d8ef5cd5-4d8e-4fe0-af3f-4198b7e32767
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 09:31] =>  0:00
+:END:
+** ~git pull origin master~
+:PROPERTIES:
+:ID:       040e0a2c-cee3-48e0-8517-64acbbf485b8
+:END:
+** FAQs
+:PROPERTIES:
+:ID:       b86fca28-d774-48f8-8c5f-dc558ab5a3a2
+:END:
+** Email                                                          :noexport:
+:PROPERTIES:
+:ID:       f73ec4e6-2943-4678-9467-9a7235168fb4
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-17 Wed 21:13]--[2020-06-17 Wed 21:42] =>  0:29
+CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 10:04] =>  0:33
+:END:
+Following our discussion yesterday, I'm thinking about starting a workshop to share some of the tools that I think could make research easier.
+Here is 3 pain points that I think are most frustrating in doing research (or any text-related work really). Could you please have a look and let me know if they fit your pain points?
+1. No more "paper-final-final-final-final.tex"
+2. No more spending 30 minutes on "who changed this" questions
+3. No more spending 30 minutes on "when/why did we change this" questions
