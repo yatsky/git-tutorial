@@ -1874,6 +1874,14 @@ Date:   Tue Jun 23 15:25:26 2020 +1000
 
     Add main paper and main-data file.
 #+end_src
+
+We all make some stupid mistakes that destroy $LaTeX$.
+We can use ~git checkout .~.
+
+Sometimes we want to put all of our current changes away so that we can quickly note down our new thoughts. We can use ~git stash~ to put everything aside, and work on the new ideas that just pop up.
+
+Though we don't say it, we often want to know who wrote which part.
+And we can use ~git blame~ to find our, line-by-line, who wrote which in the latest commit.
 ** Email                                                          :noexport:
 :PROPERTIES:
 :ID:       f73ec4e6-2943-4678-9467-9a7235168fb4
