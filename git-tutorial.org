@@ -1719,6 +1719,161 @@ Date:   Tue Jun 23 15:25:26 2020 +1000
 
     Add main paper and main-data file.
 #+end_src
+
+Now that our code in the project has been updated.
+We want it to be updated in the ~conference~ branch as well
+so that we can use the newest code for the Sydney conference.
+
+To do that, we can simply do a ~git rebase~.
+#+name: checkout conference for rebase
+#+caption: checkout conference for rebase
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+git checkout syd-conference
+git log
+#+end_src
+
+#+name: Results: checkout conference for rebase
+#+RESULTS: Results: checkout conference for rebase
+#+begin_src bash
+commit a3df94b94279d7b14df06787d414c505ce6396ed
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:48:10 2020 +1000
+
+    Add content for sydney conference
+
+commit 508081abcde3a7444d258f7fd3c7d5bcbd165080
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:34:13 2020 +1000
+
+    Basic template for the main paper.
+
+commit ed1e777e7c5109b12e20dac0b4c59728a4ffea60
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:25:26 2020 +1000
+
+    Add main paper and main-data file.
+#+end_src
+List files.
+#+name: list files
+#+caption: list files
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+ls
+#+end_src
+
+#+name: Results: list files
+#+RESULTS: Results: list files
+#+begin_src bash
+data
+main-paper.tex
+syd-conference
+#+end_src
+
+Do a rebase to update the content in the ~conference~ branch.
+#+name: git rebase
+#+caption: git rebase
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+git rebase master
+#+end_src
+
+#+name: Results: git rebase
+#+RESULTS: Results: git rebase
+#+begin_src bash
+First, rewinding head to replay your work on top of it...
+Applying: Add content for sydney conference
+#+end_src
+Now we check our files again.
+#+name: check conference files again
+#+caption: check conference files again
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+ls
+#+end_src
+
+#+name: Results: check conference files again
+#+RESULTS: Results: check conference files again
+#+begin_src bash
+data
+data-analysis.do
+main-paper.tex
+syd-conference
+#+end_src
+Check our log.
+
+#+name: check log in the conference branch
+#+caption: check log in the conference branch
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+git log
+#+end_src
+
+#+name: Results: check log in the conference branch
+#+RESULTS: Results: check log in the conference branch
+#+begin_src bash
+commit 6e5b0ab5e317772d0acc282b86d19d31e9e2ea91
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:48:10 2020 +1000
+
+    Add content for sydney conference
+
+commit 080a94895202243ee8c0c07e4afc41b8a39a2bc7
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 16:03:28 2020 +1000
+
+    Add very basic analysis code.
+
+commit 97b877ebd3140cd17543aebf4ea135549291b83f
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:58:52 2020 +1000
+
+    Add some data analysis code
+
+commit 508081abcde3a7444d258f7fd3c7d5bcbd165080
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:34:13 2020 +1000
+
+    Basic template for the main paper.
+
+commit ed1e777e7c5109b12e20dac0b4c59728a4ffea60
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:25:26 2020 +1000
+
+    Add main paper and main-data file.
+#+end_src
+We can now continue our work in the ~conference~ branch.
+
+Or we can go back to the ~master~ branch and continue working on our project.
+#+name: go back to master
+#+caption: go back to master
+#+begin_src bash :dir /tmp/contest-project :results output replace code
+git checkout master
+git log
+#+end_src
+
+#+name: Results: go back to master
+#+RESULTS: Results: go back to master
+#+begin_src bash
+commit 080a94895202243ee8c0c07e4afc41b8a39a2bc7
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 16:03:28 2020 +1000
+
+    Add very basic analysis code.
+
+commit 97b877ebd3140cd17543aebf4ea135549291b83f
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:58:52 2020 +1000
+
+    Add some data analysis code
+
+commit 508081abcde3a7444d258f7fd3c7d5bcbd165080
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:34:13 2020 +1000
+
+    Basic template for the main paper.
+
+commit ed1e777e7c5109b12e20dac0b4c59728a4ffea60
+Author: Yaoni <wyatsky@gmail.com>
+Date:   Tue Jun 23 15:25:26 2020 +1000
+
+    Add main paper and main-data file.
+#+end_src
 ** Email                                                          :noexport:
 :PROPERTIES:
 :ID:       f73ec4e6-2943-4678-9467-9a7235168fb4
