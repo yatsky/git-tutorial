@@ -1302,7 +1302,7 @@ CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 09:31] =>  0:00
 :END:
 ** Academic project demo
 :LOGBOOK:
-CLOCK: [2020-06-23 Tue 15:18]
+CLOCK: [2020-06-23 Tue 15:18]--[2020-06-23 Tue 16:14] =>  0:56
 CLOCK: [2020-06-23 Tue 15:16]--[2020-06-23 Tue 15:17] =>  0:01
 :END:
 #+name: set up environment
@@ -1895,3 +1895,9 @@ Here is 3 pain points that I think are most frustrating in doing research (or an
 1. No more "paper-final-final-final-final.tex"
 2. No more spending 30 minutes on "who changed this" questions
 3. No more spending 30 minutes on "when/why did we change this" questions
+** Misc                                                           :noexport:
+:LOGBOOK:
+CLOCK: [2020-06-23 Tue 15:15]--[2020-06-23 Tue 15:16] =>  0:01
+CLOCK: [2020-06-23 Tue 14:17]--[2020-06-23 Tue 14:19] =>  0:02
+CLOCK: [2020-06-23 Tue 13:57]--[2020-06-23 Tue 14:17] =>  0:20
+:END:
