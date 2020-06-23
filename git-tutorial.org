@@ -1495,7 +1495,7 @@ On branch syd-conference
 nothing to commit, working tree clean
 #+end_src
 
-We check out log.
+We check our log.
 #+name: check log
 #+caption: check log
 #+begin_src bash :dir /tmp/contest-project :results output replace code
