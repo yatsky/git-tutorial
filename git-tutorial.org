@@ -1302,12 +1302,39 @@ CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 09:31] =>  0:00
 :END:
 ** Academic project demo
 :LOGBOOK:
+CLOCK: [2020-06-27 Sat 15:02]--[2020-06-27 Sat 15:08] =>  0:06
 CLOCK: [2020-06-23 Tue 15:18]--[2020-06-23 Tue 16:14] =>  0:56
 CLOCK: [2020-06-23 Tue 15:16]--[2020-06-23 Tue 15:17] =>  0:01
+:END:
+*** Intro
+:LOGBOOK:
+CLOCK: [2020-06-27 Sat 15:29]--[2020-06-27 Sat 15:33] =>  0:04
+CLOCK: [2020-06-27 Sat 15:21]--[2020-06-27 Sat 15:29] =>  0:08
+CLOCK: [2020-06-27 Sat 15:13]--[2020-06-27 Sat 15:18] =>  0:05
 :END:
 One random meme that catches the pain:
 [[file:version control meme.png]]
 
+We cover the following topics:
+1. Version control - one line introduction
+2. git - our main topic
+   1. Record changes made to your files with git.
+      1. ~git add~
+      2. ~git commit~
+   2. Easily check a change made a few months ago.
+      1. ~git checkout~
+   3. Original paper, revisions, conference slides, BB slides, all live happily together ever after.
+      1. ~git branch~
+      2. ~git merge~
+      3. ~git rebase~
+   4. Experiment with new ideas with *zero* commitment.
+      1. ~git branch~
+      2. ~git stash~
+*** Demo
+:LOGBOOK:
+CLOCK: [2020-06-27 Sat 15:37]--[2020-06-27 Sat 15:55] =>  0:18
+:END:
+**** Record changes made to your files with git
 #+name: set up environment
 #+caption: set up environment
 #+begin_src bash :dir /tmp :results output replace code
@@ -1409,7 +1436,7 @@ git commit -m "Basic template for the main paper."
 [master 508081a] Basic template for the main paper.
  1 file changed, 54 insertions(+)
 #+end_src
-
+**** Original paper, revisions, conference slides, BB slides, all live happily together ever after
 Add a branch for conference in Sydney.
 #+name: new branch for conference
 #+caption: new branch for conference
@@ -1565,10 +1592,11 @@ ls
 data
 main-paper.tex
 #+end_src
-
+**** Experiment with new ideas with *zero* commitment
+***** Experiment with ~git branch~
 We then want to work on some changes that are experimental.
 For example, we might want to add some stata code to play with our data.
-We can create a new branch to do so.
+Assuming our /working tree is clean/ (committed all changes), we can create a new branch to do start our experiment.
 #+name: experimental changes
 #+caption: experimental changes
 #+begin_src bash :dir /tmp/contest-project :results output replace code
@@ -1647,6 +1675,28 @@ Date:   Tue Jun 23 15:25:26 2020 +1000
     Add main paper and main-data file.
 #+end_src
 
+***** Temporarily save all changes with ~git stash~
+:PROPERTIES:
+:ORDERED:  t
+:END:
+:LOGBOOK:
+CLOCK: [2020-06-27 Sat 15:55]--[2020-06-27 Sat 15:56] =>  0:01
+:END:
+~git branch~ is good enough when we have no outstanding changes to commit or the file we are going to experiment with will not conflict with our current changes.
+However, consider the situation where we changed a few lines in our bootstrap code in our ~master~ branch, but we are not certain if we want to commit it as it has not been tested yet.
+Then suddenly an idea pops up, and you want to quickly note down that idea before it went away.
+Now you know that implementing the idea certainly involves editing the bootstrap code that you /already edited/.
+How can you temporarily save the changes that you want to keep but is hesitant to commit?
+
+This is an oversimplified example where we want to use ~git stash~.
+All you need to do is run ~git stash~, and git will store all of your changes for you
+and make sure that your files are at the last commit of ~master~.
+Then you can safely experiment with your new ideas.
+
+When you are done with the experiment, stage and commit as usual any changes you need.
+After that, you can run ~git stash pop~, which will restore your earlier changes.
+
+**** Original paper, revisions, conference slides, BB slides, all live happily together ever after
 We now decide this code is good enough and want to merge it to our master branch (main paper).
 We go back to our master branch.
 #+name: merge into master
@@ -1878,10 +1928,10 @@ Date:   Tue Jun 23 15:25:26 2020 +1000
     Add main paper and main-data file.
 #+end_src
 
+
+
 We all make some stupid mistakes that destroy $LaTeX$.
 We can use ~git checkout .~.
-
-Sometimes we want to put all of our current changes away so that we can quickly note down our new thoughts. We can use ~git stash~ to put everything aside, and work on the new ideas that just pop up.
 
 Though we don't say it, we often want to know who wrote which part.
 And we can use ~git blame~ to find our, line-by-line, who wrote which in the latest commit.
