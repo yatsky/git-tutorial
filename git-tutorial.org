@@ -27,12 +27,13 @@ CLOCK: [2020-06-11 Thu 16:03]--[2020-06-11 Thu 16:41] =>  0:38
 
 *** Terminologies
 :LOGBOOK:
+CLOCK: [2020-06-27 Sat 22:00]--[2020-06-27 Sat 22:05] =>  0:05
 CLOCK: [2020-06-18 Thu 19:12]--[2020-06-18 Thu 19:21] =>  0:09
 CLOCK: [2020-06-18 Thu 17:39]--[2020-06-18 Thu 17:52] =>  0:13
 :END:
 Here is a list of terminologies that you might find confusing, or that I think is worth mentioning.
 
-- file(s): a /file/ in git *usually* refers to a text-based file. Usually, if a file can be opened by Notepad (Windows) or TextEdit (Mac) and still readable by a human being, it's a text file. All $\LaTeX$ source files are text-based.
+- file(s): a /file/ in git *usually* refers to a text-based file. Usually, if a file can be opened by Notepad (Windows) or TextEdit (Mac) and still readable by a human being, it's a text file. All $\LaTeX$ source files, R files, Stata ~.do~ files, Matlab files and ~.csv~ files are text-based. Whereas, Excel files (~.xls~, ~xlsx~), Stata ~.dta~ files, image files and PDF files are not text-based. Git is able to track whether they have changed as a whole file, but not line by line.
 - line(s): a /line/ in git is determined by a carriage. It is sometimes oversimplifyingly depicted as "\n" (not including quotes).
 - change(s): in the world of git, changes refer to the creation, deletion of files, or the addition or deletion of lines inside files.
 - ~cd~: this is a command that means (c)hange (d)irectory.
