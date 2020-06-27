@@ -1305,6 +1305,9 @@ CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 09:31] =>  0:00
 CLOCK: [2020-06-23 Tue 15:18]--[2020-06-23 Tue 16:14] =>  0:56
 CLOCK: [2020-06-23 Tue 15:16]--[2020-06-23 Tue 15:17] =>  0:01
 :END:
+One random meme that catches the pain:
+[[file:version control meme.png]]
+
 #+name: set up environment
 #+caption: set up environment
 #+begin_src bash :dir /tmp :results output replace code
