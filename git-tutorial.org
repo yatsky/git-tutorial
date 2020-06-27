@@ -1300,7 +1300,7 @@ CLOCK: [2020-06-11 Thu 09:31]--[2020-06-11 Thu 09:31] =>  0:00
 :PROPERTIES:
 :ID:       b86fca28-d774-48f8-8c5f-dc558ab5a3a2
 :END:
-** Academic project demo
+** QUT Brownbag project demo
 :LOGBOOK:
 CLOCK: [2020-06-27 Sat 15:02]--[2020-06-27 Sat 15:08] =>  0:06
 CLOCK: [2020-06-23 Tue 15:18]--[2020-06-23 Tue 16:14] =>  0:56
@@ -1308,6 +1308,7 @@ CLOCK: [2020-06-23 Tue 15:16]--[2020-06-23 Tue 15:17] =>  0:01
 :END:
 *** Intro
 :LOGBOOK:
+CLOCK: [2020-06-27 Sat 16:48]--[2020-06-27 Sat 16:57] =>  0:09
 CLOCK: [2020-06-27 Sat 15:29]--[2020-06-27 Sat 15:33] =>  0:04
 CLOCK: [2020-06-27 Sat 15:21]--[2020-06-27 Sat 15:29] =>  0:08
 CLOCK: [2020-06-27 Sat 15:13]--[2020-06-27 Sat 15:18] =>  0:05
@@ -1315,14 +1316,14 @@ CLOCK: [2020-06-27 Sat 15:13]--[2020-06-27 Sat 15:18] =>  0:05
 One random meme that catches the pain:
 [[file:version control meme.png]]
 
-We cover the following topics:
-1. Version control - one line introduction
-2. git - our main topic
+In this demo, we demonstrate how to use git to manage versions of our project.
+The demo is roughly divided into the following sections with the main commands associated with the sections listed.
    1. Record changes made to your files with git.
       1. ~git add~
       2. ~git commit~
    2. Easily check a change made a few months ago.
       1. ~git checkout~
+      2. ~git log~
    3. Original paper, revisions, conference slides, BB slides, all live happily together ever after.
       1. ~git branch~
       2. ~git merge~
