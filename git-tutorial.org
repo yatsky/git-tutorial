@@ -1937,6 +1937,20 @@ We can use ~git checkout .~.
 
 Though we don't say it, we often want to know who wrote which part.
 And we can use ~git blame~ to find our, line-by-line, who wrote which in the latest commit.
+
+** Graphic demo
+*** Topics
+:LOGBOOK:
+CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
+CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
+:END:
+1. Incremental versioning - no more "final-final-reallyfinal-thefinal.tex".
+2. Understand how your paper, code and data evolve over time in retrospect.
+3. Know who changed what at when & why - line by line.
+4. Time travel to previous versions with *zero* damage to current work.
+5. Experiment with new ideas in place with *zero* commitment.
+6. Update your conference slides to use the newest changes in main paper, with *zero* manual check-copy-paste.
+7. Change code for your conference slides with *zero* damage to your main paper code.
 ** Email                                                          :noexport:
 :PROPERTIES:
 :ID:       f73ec4e6-2943-4678-9467-9a7235168fb4
