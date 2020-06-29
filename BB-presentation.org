@@ -1,0 +1,58 @@
+#+Title: Introduction to Git
+#+Author: Yi Wang
+#+Email: wangy95@qut.edu.au
+#+REVEAL_INIT_OPTIONS: width:1200, height:800, margin: 0.1, minScale:0.2, maxScale:2.5, transition:'slide', slideNumber:true
+#+OPTIONS: toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_THEME: black
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Git Introduction.">
+#+REVEAL_POSTAMBLE: <p> Created by Yi Wang. </p>
+#+REVEAL_EXTRA_JS:  { src: './image-size.js' }
+* Why do we want to use Git?
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
+CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
+CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
+:END:
+** Incremental versioning 
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:37]--[2020-06-29 Mon 18:38] =>  0:01
+CLOCK: [2020-06-29 Mon 11:45]--[2020-06-29 Mon 11:50] =>  0:05
+:END:
+No more "final-final-reallyfinal-thefinal.tex".
+
+[[file:version control meme.png]]
+*** Clean layout - always
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:31]--[2020-06-29 Mon 18:36] =>  0:05
+:END:
+- With Git, your project structure is *always* clean like below.
+- You *always* work on the latest version of the files.
+*** Have as many versions as you want
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:36]--[2020-06-29 Mon 18:37] =>  0:01
+:END:
+In fact, Git encourages you to break your changes into small coherent chunks
+as incremental versions.
+
+Each line below can be considred as a version.
+** Understand your work
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:38]
+:END:
+With Git, you understand how your 
+- paper
+- code
+- data
+evolve over time in retrospect.
+** Full cooperation history
+Know who changed what at when & why - line by line.
+** Time travel to any version
+Time travel to previous versions with /zero/ damage to current work.
+** Work on new ideas - no worries
+Experiment with new ideas in place with *zero* commitment.
+** Bring sub-projects up to speed with one command
+Update your conference slides to use the newest changes in main paper, with *zero* manual check-copy-paste.
+** Sub-projects live together yet separately
+Change code for your conference slides with *zero* damage to your main paper code.
