@@ -73,10 +73,77 @@ the demo today will be using SourceTree.
 #+end_notes
 * Incremental versioning 
 :LOGBOOK:
+CLOCK: [2020-07-01 Wed 23:20]--[2020-07-01 Wed 23:28] =>  0:08
+CLOCK: [2020-07-01 Wed 22:56]--[2020-07-01 Wed 23:16] =>  0:20
 CLOCK: [2020-06-29 Mon 18:37]--[2020-06-29 Mon 18:38] =>  0:01
 CLOCK: [2020-06-29 Mon 11:45]--[2020-06-29 Mon 11:50] =>  0:05
 :END:
+Manual version control by renaming a file is not optimal because
 
+#+ATTR_REVEAL: :frag (appear)
+1. hard to distinguish unrelated changes
+2. hard to attach a meaning to a rename
+
+#+begin_notes
+Manual version control by renaming a file is not optimal because
+
+It's hard to distinguish unrelated changes
+It's hard to attach a meaning to a rename
+
+That's why we want to do something I'd call incremental versioning,
+meaning that we create a version for a change of text or a change of a line or
+a change of a few lines that are related, which is different from versioning the whole file by renaming it.
+
+For example, in a file called paper.tex.
+We change the title in the first line from Introduction to Git to Introduction to Version Control.
+
+What Incremental versioning sees is
+What Renaming method sees is
+#+end_notes
+#+REVEAL: split
+In ~paper.tex~, we changed the title at line number 1.
+
++Introduction to Git+ 
+=>
+_Introduction to Version Control_
+
+- Incremental versioning: Line number 1 in ~paper.tex~ has been changed from /Introduction to Git/ to /Introduction to Version Control/.
+
+- Renaming: ~paper.tex~ is renamed to something like ~paper-change-title.tex~.
+#+begin_notes
+Manual version control by renaming a file is not optimal because
+
+It's hard to distinguish unrelated changes
+It's hard to attach a meaning to a rename
+
+That's why we want to do something I'd call incremental versioning,
+meaning that we create a version for a change of text or a change of a line or
+a change of a few lines that are related, which is different from versioning the whole file by renaming it.
+
+For example, in a file called paper.tex.
+We change the title in the first line from Introduction to Git to Introduction to Version Control.
+
+What Incremental versioning sees is
+What Renaming method sees is
+#+end_notes
+
+#+REVEAL: split
+Git /tracks/ all your incremental changes and automagically applies those changes to your files in a chronological order.
+
+This is the core idea of Git and it has some amazing effects.
+
+#+BEGIN_SRC ditaa :file incremental changes.png :cmdline -r -s 2 
+  /---\
+  |c 1|  This is one change.
+  \---/
+
+  /---\  /---\  /---\  /---\     /---\  /---\
+  |c 1|->|c 2|->|c 3|->|c 4|->...|c98|->|c99|
+  \---/  \---/  \---/  \---/     \---/  \---/
+
+      Time line
+    ------------------------------>
+#+END_SRC
 ** Clean layout - always
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 15:39]--[2020-07-01 Wed 16:15] =>  0:36
