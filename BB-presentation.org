@@ -15,7 +15,21 @@ CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
 CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
 CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
 :END:
-** Incremental versioning 
+  - [[Incremental versioning][Incremental versioning]]
+  - [[Understand your work][Understand your work]]
+  - [[Full cooperation history][Full cooperation history]]
+  - [[Time travel to any version][Time travel to any version]]
+  - [[Work on new ideas - no worries][Work on new ideas - no worries]]
+  - [[A ~branch~ for a sub-project][A ~branch~ for a sub-project]]
+  - [[Bring sub-projects up to speed with one command][Bring sub-projects up to speed with one command]]
+* Magic example
+:LOGBOOK:
+CLOCK: [2020-07-01 Wed 14:38]--[2020-07-01 Wed 15:28] =>  0:50
+:END:
+$LaTeX$ breaks down by accident.
+
+When the editor could not remember whether a part of the document or code has been changed because that change was done quite some time ago, or that was quickly done while other changes were made.
+* Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-06-29 Mon 18:37]--[2020-06-29 Mon 18:38] =>  0:01
 CLOCK: [2020-06-29 Mon 11:45]--[2020-06-29 Mon 11:50] =>  0:05
@@ -23,13 +37,20 @@ CLOCK: [2020-06-29 Mon 11:45]--[2020-06-29 Mon 11:50] =>  0:05
 No more "final-final-reallyfinal-thefinal.tex".
 
 [[file:version control meme.png]]
-*** Clean layout - always
+
+** Clean layout - always
 :LOGBOOK:
+CLOCK: [2020-07-01 Wed 15:39]--[2020-07-01 Wed 16:15] =>  0:36
 CLOCK: [2020-06-29 Mon 18:31]--[2020-06-29 Mon 18:36] =>  0:05
 :END:
+- We've seen this too much.
+[[file:mesy%20folder.png]]
+#+REVEAL: split
 - With Git, your project structure is *always* clean like below.
 - You *always* work on the latest version of the files.
-*** Have as many versions as you want
+  
+[[file:clean%20structure.png]]
+** Have as many versions as you want
 :LOGBOOK:
 CLOCK: [2020-06-29 Mon 18:36]--[2020-06-29 Mon 18:37] =>  0:01
 :END:
@@ -37,22 +58,94 @@ In fact, Git encourages you to break your changes into small coherent chunks
 as incremental versions.
 
 Each line below can be considred as a version.
-** Understand your work
+
+[[file:incremental versioning.jpg]]
+* Understand your work
 :LOGBOOK:
-CLOCK: [2020-06-29 Mon 18:38]
+CLOCK: [2020-06-29 Mon 18:38]--[2020-06-29 Mon 18:58] =>  0:20
 :END:
 With Git, you understand how your 
 - paper
 - code
 - data
 evolve over time in retrospect.
-** Full cooperation history
+* Full cooperation history
 Know who changed what at when & why - line by line.
-** Time travel to any version
+
+[[file:cooperation history.png]]
+* Time travel to any version
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 19:06]--[2020-06-29 Mon 19:20] =>  0:14
+:END:
 Time travel to previous versions with /zero/ damage to current work.
-** Work on new ideas - no worries
+* Work on new ideas - no worries
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 19:27]--[2020-06-29 Mon 19:35] =>  0:08
+:END:
 Experiment with new ideas in place with *zero* commitment.
-** Bring sub-projects up to speed with one command
-Update your conference slides to use the newest changes in main paper, with *zero* manual check-copy-paste.
-** Sub-projects live together yet separately
+
+** ~stash~ all your temporary work
+#+ATTR_REVEAL: :frag (appear)
+- New idea hits whenever it pleases.
+- It hits hard especially when you are in the middle of something.
+- ~git stash~ saves all your current progress from the last commit.
+- Then you can start working on the new ideas.
+
+** Getting back your work
+#+ATTR_REVEAL: :frag (appear)
+- When you finished with your new ideas.
+- ~git stash pop~ to get back to where you left.
+
+* A ~branch~ for a sub-project
 Change code for your conference slides with *zero* damage to your main paper code.
+
+[[file:branches.png]]
+* Bring sub-projects up to speed with one command
+:LOGBOOK:
+CLOCK: [2020-06-30 Tue 11:48]--[2020-06-30 Tue 11:53] =>  0:05
+CLOCK: [2020-06-29 Mon 20:06]--[2020-06-29 Mon 20:10] =>  0:04
+:END:
+Update your conference slides to use the newest changes in main paper, with *zero* manual check-copy-paste.
+
+#+REVEAL: split
+#+BEGIN_SRC ditaa :file git-rebase-branch.png :cmdline -r -s 2 
+
+/-\  /-\  /-\  /-\
+|c|->|c|->|c|->|c|     master branch (main paper)
+\-/  \-/  \-/  \-/
+                |
+                |   /---\  /---\
+                +-->|cb |->|cb |     conference branch
+                    \---/  \---/
+#+END_SRC
+
+#+REVEAL: split
+#+BEGIN_SRC ditaa :file git-rebase-before.png :cmdline -r -s 2 
+
+/-\  /-\  /-\  /-\  /-------------\  /-------------\
+|c|->|c|->|c|->|c|->|updated data |->|updated code |     master branch (main paper)
+\-/  \-/  \-/  \-/  \-------------/  \-------------/
+                |
+                |   /---\  /---\
+                +-->|cb |->|cb |    conference branch
+                    \---/  \---/
+#+END_SRC
+
+
+#+REVEAL: split
+
+#+BEGIN_SRC ditaa :file git-rebase-after.png :cmdline -r -s 2 
+
+
+/-\  /-\  /-\  /-\  /-------------\  /-------------\
+|c|->|c|->|c|->|c|->|updated data |->|updated code |     master branch (main paper)
+\-/  \-/  \-/  \-/  \-------------/  \-------------/
+                                            |
+                                            |   /---\  /---\
+                                            +-->|cb |->|cb |     conference branch
+                                                \---/  \---/
+#+END_SRC
+
+* Collaborate like never before
+This is an advanced option and requires everyone in the team to use Git.
+
