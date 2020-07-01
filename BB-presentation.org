@@ -13,7 +13,9 @@
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:20]--[2020-07-01 Wed 20:24] =>  0:04
 :END:
+** The meme
 
+[[file:version control meme.png]]
 ** Current situation
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:24]--[2020-07-01 Wed 20:27] =>  0:03
@@ -62,9 +64,6 @@ When the editor could not remember whether a part of the document or code has be
 CLOCK: [2020-06-29 Mon 18:37]--[2020-06-29 Mon 18:38] =>  0:01
 CLOCK: [2020-06-29 Mon 11:45]--[2020-06-29 Mon 11:50] =>  0:05
 :END:
-No more "final-final-reallyfinal-thefinal.tex".
-
-[[file:version control meme.png]]
 
 ** Clean layout - always
 :LOGBOOK:
