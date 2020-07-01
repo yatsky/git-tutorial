@@ -3,6 +3,7 @@
 #+Email: wangy95@qut.edu.au
 #+REVEAL_INIT_OPTIONS: width:1200, height:800, margin: 0.1, minScale:0.2, maxScale:2.5, transition:'slide', slideNumber:true
 #+OPTIONS: toc:nil
+#+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 #+REVEAL_THEME: black
 #+REVEAL_HLEVEL: 2
