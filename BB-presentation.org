@@ -44,7 +44,7 @@ Given the situation, it is extremly hard, it not impossible, to achieve the foll
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 21:02]--[2020-07-01 Wed 21:06] =>  0:04
 :END:
-/Incidentally/, Version Control checks all those points.
+/Incidentally/, modern Version Control checks all those points.
 - [X] Traceability
 - [X] Identifiability
 - [X] Clarity
