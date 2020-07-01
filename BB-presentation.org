@@ -71,13 +71,6 @@ There are other more traditional graphical software that are built on top of Git
 Though I encourage everyone to use Git itself since it is more powerful, 
 the demo today will be using SourceTree.
 #+end_notes
-* Magic example
-:LOGBOOK:
-CLOCK: [2020-07-01 Wed 14:38]--[2020-07-01 Wed 15:28] =>  0:50
-:END:
-$LaTeX$ breaks down by accident.
-
-When the editor could not remember whether a part of the document or code has been changed because that change was done quite some time ago, or that was quickly done while other changes were made.
 * Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-06-29 Mon 18:37]--[2020-06-29 Mon 18:38] =>  0:01
