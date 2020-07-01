@@ -195,3 +195,13 @@ Update your conference slides to use the newest changes in main paper, with *zer
 * Collaborate like never before
 This is an advanced option and requires everyone in the team to use Git.
 
+
+* Clock time                                                       :noexport:
+
+:LOGBOOK:
+CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
+CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
+CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
+:END:
+
+
