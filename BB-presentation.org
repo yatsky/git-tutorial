@@ -52,17 +52,24 @@ CLOCK: [2020-07-01 Wed 21:02]--[2020-07-01 Wed 21:06] =>  0:04
 - [X] Accident prevention
 * Why do we want to use Git?
 :LOGBOOK:
-CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
-CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
-CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
+CLOCK: [2020-07-01 Wed 21:55]--[2020-07-01 Wed 22:10] =>  0:15
 :END:
-  - [[Incremental versioning][Incremental versioning]]
-  - [[Understand your work][Understand your work]]
-  - [[Full cooperation history][Full cooperation history]]
-  - [[Time travel to any version][Time travel to any version]]
-  - [[Work on new ideas - no worries][Work on new ideas - no worries]]
-  - [[A ~branch~ for a sub-project][A ~branch~ for a sub-project]]
-  - [[Bring sub-projects up to speed with one command][Bring sub-projects up to speed with one command]]
+#+ATTR_REVEAL: :frag (appear)
+- De-facto software for version control
+- A lot of good tutorials online
+- Easy to learn (maybe)
+- Free, *widely* used collaboration service - GitHub
+
+** Side note
+Git - command line based tool.
+SourceTree - graphical tool based on Git.
+
+#+begin_notes
+There are other more traditional graphical software that are built on top of Git.
+
+Though I encourage everyone to use Git itself since it is more powerful, 
+the demo today will be using SourceTree.
+#+end_notes
 * Magic example
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 14:38]--[2020-07-01 Wed 15:28] =>  0:50
