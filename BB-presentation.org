@@ -9,6 +9,34 @@
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Git Introduction.">
 #+REVEAL_POSTAMBLE: <p> Created by Yi Wang. </p>
 #+REVEAL_EXTRA_JS:  { src: './image-size.js' }
+* Why Version Control?
+:LOGBOOK:
+CLOCK: [2020-07-01 Wed 20:20]--[2020-07-01 Wed 20:24] =>  0:04
+:END:
+
+** Current situation
+:LOGBOOK:
+CLOCK: [2020-07-01 Wed 20:24]--[2020-07-01 Wed 20:27] =>  0:03
+:END:
+Research nowadays
+#+ATTR_REVEAL: :frag (appear)
+- involves hundreds of iterations before publication,
+- spans months or years, and
+- has many collaboraters.
+** Problem  
+:LOGBOOK:
+CLOCK: [2020-07-01 Wed 20:39]--[2020-07-01 Wed 20:57] =>  0:18
+:END:
+Given the situation, it is extremly hard, it not impossible, to achieve the following:
+
+#+ATTR_REVEAL: :frag (appear)
+- Traceability - know how the document/project evolved over time.
+- Identifiability - track what changed by who at when and why.
+- Clarity - multiple versions of documents can be distinguished.
+- Duplicate reduction - out-of-date and misleading copies can be safely destroyed, leaving definitive versions only.
+- Error reduction - users are less likely to access confilict document versions.
+- Accident prevention - make it impossible for a users to destroy a project/file.
+(First five points are from: [[https://www2.le.ac.uk/services/research-data/old-2019-12-11/organise-data/version-control#:~:text=Benefits,may%20not%20be%20immediately%20apparent][Leicester University]].)
 * Why do we want to use Git?
 :LOGBOOK:
 CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
