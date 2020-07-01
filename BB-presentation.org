@@ -25,20 +25,31 @@ Research nowadays
 - involves hundreds of iterations before publication,
 - spans months or years, and
 - has many collaboraters.
-** Problem  
+** Problem
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:39]--[2020-07-01 Wed 20:57] =>  0:18
 :END:
 Given the situation, it is extremly hard, it not impossible, to achieve the following:
 
 #+ATTR_REVEAL: :frag (appear)
-- Traceability - know how the document/project evolved over time.
-- Identifiability - track what changed by whom at when and why.
-- Clarity - multiple versions of documents can be distinguished.
-- Duplicate reduction - out-of-date and misleading copies can be safely destroyed, leaving definitive versions only.
-- Error reduction - users are less likely to access confilict document versions.
+- *Traceability - know how the document/project evolved over time.
+- *Identifiability - track what changed by whom at when and why.
+- *Clarity - multiple versions of documents can be distinguished.
+- *Duplicate reduction - out-of-date and misleading copies can be safely destroyed, leaving definitive versions only.
+- *Error reduction - users are less likely to access confilict document versions.
 - Accident prevention - make it impossible for users to destroy a project/file.
-(First five points are from: [[https://www2.le.ac.uk/services/research-data/old-2019-12-11/organise-data/version-control#:~:text=Benefits,may%20not%20be%20immediately%20apparent][Leicester University]].)
+(* Taken from: [[https://www2.le.ac.uk/services/research-data/old-2019-12-11/organise-data/version-control#:~:text=Benefits,may%20not%20be%20immediately%20apparent][Leicester University]].)
+** Solution
+:LOGBOOK:
+CLOCK: [2020-07-01 Wed 21:02]--[2020-07-01 Wed 21:06] =>  0:04
+:END:
+/Incidentally/, Version Control checks all those points.
+- [X] Traceability
+- [X] Identifiability
+- [X] Clarity
+- [X] Duplicate reduction
+- [X] Error reduction
+- [X] Accident prevention
 * Why do we want to use Git?
 :LOGBOOK:
 CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
