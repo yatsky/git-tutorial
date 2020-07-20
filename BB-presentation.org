@@ -140,6 +140,15 @@ The new way is to build a manual on how to build the ISS.
 <img src="iss-manual.jpg" />
 </p>
 #+END_EXPORT
+** Git: the manual
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 14:06]--[2020-07-20 Mon 14:19] =>  0:13
+:END:
+From the Lego example, it is important to note that apart from building the final Lego ISS, we also create a manual that records the exact steps on how to build the ISS. 
+
+#+REVEAL: split
+The manual that Git creates records more information and provides all the magic that we want to achieve and many more.
+
 * Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 23:20]--[2020-07-01 Wed 23:28] =>  0:08
