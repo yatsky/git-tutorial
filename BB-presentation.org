@@ -325,6 +325,7 @@ This is an advanced option and requires everyone in the team to use Git.
 * Clock time                                                       :noexport:
 
 :LOGBOOK:
+CLOCK: [2020-07-20 Mon 13:32]--[2020-07-20 Mon 13:40] =>  0:08
 CLOCK: [2020-07-15 Wed 20:23]--[2020-07-15 Wed 20:24] =>  0:01
 CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
 CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
