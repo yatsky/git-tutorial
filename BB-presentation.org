@@ -10,6 +10,7 @@
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Git Introduction.">
 #+REVEAL_POSTAMBLE: <p> Created by Yi Wang. </p>
 #+REVEAL_EXTRA_JS:  { src: './image-size.js' }
+#+REVEAL_EXTRA_CSS: ./styles.css
 * Why Version Control?
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:20]--[2020-07-01 Wed 20:24] =>  0:04
