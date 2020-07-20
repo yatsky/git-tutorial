@@ -93,17 +93,22 @@ the demo today will be using SourceTree.
 #+end_notes
 * Conceptual change
 :LOGBOOK:
+CLOCK: [2020-07-20 Mon 13:59]--[2020-07-20 Mon 14:06] =>  0:07
 CLOCK: [2020-07-20 Mon 13:48]--[2020-07-20 Mon 13:48] =>  0:00
 :END:
-To use Git, it is important that we change the way we view files.
+To use Git, it is important that we change the way we think of research and changes.
+
+As an analogy, we compare research to building a Lego ISS. 
+
 ** Research development as building a Lego
 :LOGBOOK:
 CLOCK: [2020-07-20 Mon 11:49]--[2020-07-20 Mon 11:52] =>  0:03
 :END:
-If we think of doing research as building the ISS out of lego, our situation is:
+Our situation:
 - We need to build the ISS
+- We only have the bricks available, not the manual
 - We need to work with others to build it
-- Construction is intermittent
+- Building is intermittent
 - We often
   - add new parts
   - remove old parts
