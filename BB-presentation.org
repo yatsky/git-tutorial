@@ -41,7 +41,7 @@ Given the situation, it is extremly hard, it not impossible, to achieve the foll
 - *Error reduction - users are less likely to access confilict document versions.
 - Accident prevention - make it impossible for users to destroy a project/file.
 (* Taken from: [[https://www2.le.ac.uk/services/research-data/old-2019-12-11/organise-data/version-control#:~:text=Benefits,may%20not%20be%20immediately%20apparent][Leicester University]].)
-** Solution
+** Solution                                                       :noexport:
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 21:02]--[2020-07-01 Wed 21:06] =>  0:04
 :END:
