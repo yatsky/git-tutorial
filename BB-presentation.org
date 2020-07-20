@@ -80,17 +80,6 @@ CLOCK: [2020-07-01 Wed 21:55]--[2020-07-01 Wed 22:10] =>  0:15
 - Clean workspace
 ** Extra work to do
 - Spend a minute or two to write a good comment on why we made this change whenever possible
-** Side note
-Two pieces of software in this tutorial:
-- Git - command line tool.
-- SourceTree - graphical tool based on Git.
-
-#+begin_notes
-There are other more traditional graphical software that are built on top of Git.
-
-Though I encourage everyone to use Git itself since it is more powerful, 
-the demo today will be using SourceTree.
-#+end_notes
 * Conceptual change
 :LOGBOOK:
 CLOCK: [2020-07-20 Mon 13:59]--[2020-07-20 Mon 14:06] =>  0:07
@@ -159,6 +148,19 @@ The manual that Git creates for our research
 - provides all the magic that we want to achieve and many more.
 
 * Demonstration
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 14:40]--[2020-07-20 Mon 14:44] =>  0:04
+:END:
+In this demonstration we use Git and Sourcetree.
+- Git - command line tool.
+- SourceTree - graphical tool based on Git.
+
+#+begin_notes
+There are other more traditional graphical software that are built on top of Git.
+
+Though I encourage everyone to use Git itself since it is more powerful, 
+the demo today will be using SourceTree.
+#+end_notes
 * Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 23:20]--[2020-07-01 Wed 23:28] =>  0:08
