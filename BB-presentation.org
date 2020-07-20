@@ -74,6 +74,12 @@ CLOCK: [2020-07-01 Wed 21:55]--[2020-07-01 Wed 22:10] =>  0:15
 - Easy to learn (maybe)
 - Free, *widely* used collaboration service - GitHub
 
+** Benefits we get
+- Accountability
+- Time travel
+- Clean workspace
+** Extra work to do
+- Spend a minute or two to write a good comment on why we made this change whenever possible
 ** Side note
 Two pieces of software in this tutorial:
 - Git - command line tool.
