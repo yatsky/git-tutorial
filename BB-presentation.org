@@ -27,50 +27,17 @@ Research nowadays
 - involves hundreds of iterations before publication,
 - spans months or years, and
 - has many collaborators.
-** Research development as building a Lego
+** Main goals to achieve
 :LOGBOOK:
-CLOCK: [2020-07-20 Mon 11:49]--[2020-07-20 Mon 11:52] =>  0:03
+CLOCK: [2020-07-20 Mon 13:40]--[2020-07-20 Mon 13:43] =>  0:03
 :END:
-If we think of doing research as building the ISS out of lego, our situation is:
-- We need to build the ISS
-- We need to work with others to build it
-- Construction is intermittent
-- We often
-  - add new parts
-  - remove old parts
-  - replace old parts
-
-*** The old way of version control
-:LOGBOOK:
-CLOCK: [2020-07-20 Mon 11:52]--[2020-07-20 Mon 11:54] =>  0:02
-:END:
-We take a snapshot of the *whole* project when we /feel like/ it, or when Dropbox and Overleaf /feel like/ it. 
-We eventually only get the ISS.
-[[file:iss.jpg]]
-
-*** The new way of version control
-:LOGBOOK:
-CLOCK: [2020-07-20 Mon 11:54]--[2020-07-20 Mon 11:57] =>  0:03
-:END:
-We write an instruction on how and why to assemble a particular part
-and we eventually get a manual and the final ISS.
-[[file:iss-manual.jpg]]
-*** Two ways to build a Lego
-:LOGBOOK:
-CLOCK: [2020-07-20 Mon 11:42]--[2020-07-20 Mon 11:46] =>  0:04
-:END:
-#+BEGIN_EXPORT html
-<p class="two-col">
-The old way of version control is like taking a snapshot of everything you have built so far.
-<img src="iss.jpg" />
-</p>
-#+END_EXPORT
-#+BEGIN_EXPORT html
-<p class="two-col">
-The new way is to build a manual on how to build the ISS.
-<img src="iss-manual.jpg" />
-</p>
-#+END_EXPORT
+#+ATTR_REVEAL: :frag (appear)
+- Accountability
+  - who changed what at when and why
+- Time travel
+  - easily go back to a specific version
+- Clean workspace
+  - no more "one file, too many versions"
 ** Problem                                                        :noexport:
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:39]--[2020-07-01 Wed 20:57] =>  0:18
@@ -116,6 +83,55 @@ There are other more traditional graphical software that are built on top of Git
 Though I encourage everyone to use Git itself since it is more powerful, 
 the demo today will be using SourceTree.
 #+end_notes
+* Conceptual change
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 13:48]--[2020-07-20 Mon 13:48] =>  0:00
+:END:
+To use Git, it is important that we change the way we view files.
+** Research development as building a Lego
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:49]--[2020-07-20 Mon 11:52] =>  0:03
+:END:
+If we think of doing research as building the ISS out of lego, our situation is:
+- We need to build the ISS
+- We need to work with others to build it
+- Construction is intermittent
+- We often
+  - add new parts
+  - remove old parts
+  - replace old parts
+
+*** The old way of version control
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:52]--[2020-07-20 Mon 11:54] =>  0:02
+:END:
+We take a snapshot of the *whole* project when we /feel like/ it, or when Dropbox and Overleaf /feel like/ it. 
+We eventually only get the ISS.
+[[file:iss.jpg]]
+
+*** The new way of version control
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:54]--[2020-07-20 Mon 11:57] =>  0:03
+:END:
+We write an instruction on how and why to assemble a particular part
+and we eventually get a manual and the final ISS.
+[[file:iss-manual.jpg]]
+*** Two ways to build a Lego
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:42]--[2020-07-20 Mon 11:46] =>  0:04
+:END:
+#+BEGIN_EXPORT html
+<p class="two-col">
+The old way of version control is like taking a snapshot of everything you have built so far.
+<img src="iss.jpg" />
+</p>
+#+END_EXPORT
+#+BEGIN_EXPORT html
+<p class="two-col">
+The new way is to build a manual on how to build the ISS.
+<img src="iss-manual.jpg" />
+</p>
+#+END_EXPORT
 * Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 23:20]--[2020-07-01 Wed 23:28] =>  0:08
