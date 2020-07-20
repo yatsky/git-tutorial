@@ -135,6 +135,28 @@ cd ..
 #+name: Results:
 #+RESULTS: Results:
 
+** git and lego
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 09:42]--[2020-07-20 Mon 09:59] =>  0:17
+:END:
+If we think of doing research as building the ISS out of lego then
+the old way of version control is like taking a snapshot of everything you have built so far.
+
+/Picture that shows a completely built lego/
+
+The git way is to build a manual on how to build a lego construct and git will build the actual ISS for you.
+
+/Picture that shows a lego manual/
+
+The old way works most of the time, but as we add more layers to our ISS,
+it becomes harder and harder to know what is going on inside the ISS.
+
+Eventually, we will completely lose control over the ISS except for the most recent part that we built and it becomes hard to learn what has happened during our build.
+
+The git way works all the time. It works especially well when we add many layers to our ISS since everytime we do that, we also tell git (and future ourselves) how to build this part and why it is necessary.
+
+Eventually, we get a complete manual of instructions on how to build the lego and we can retrospectively study our build process so that we can do better next time.
+
 ** How git works conceptually
 :PROPERTIES:
 :ID:       2e22c322-ce97-48e4-80d4-446023d11aee
