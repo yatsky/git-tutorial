@@ -65,17 +65,19 @@ CLOCK: [2020-07-01 Wed 21:02]--[2020-07-01 Wed 21:06] =>  0:04
 - [X] Accident prevention
 * Why do we want to use Git?
 :LOGBOOK:
+CLOCK: [2020-07-20 Mon 13:43]--[2020-07-20 Mon 13:47] =>  0:04
 CLOCK: [2020-07-01 Wed 21:55]--[2020-07-01 Wed 22:10] =>  0:15
 :END:
 #+ATTR_REVEAL: :frag (appear)
-- De-facto software for version control
+- De-facto software for modern version control
 - A lot of good tutorials online
 - Easy to learn (maybe)
 - Free, *widely* used collaboration service - GitHub
 
 ** Side note
-Git - command line based tool.
-SourceTree - graphical tool based on Git.
+Two pieces of software in this tutorial:
+- Git - command line tool.
+- SourceTree - graphical tool based on Git.
 
 #+begin_notes
 There are other more traditional graphical software that are built on top of Git.
