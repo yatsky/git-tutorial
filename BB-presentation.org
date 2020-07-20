@@ -154,6 +154,7 @@ From the Lego example, it is important to note that apart from building the fina
 #+REVEAL: split
 The manual that Git creates records more information and provides all the magic that we want to achieve and many more.
 
+* Demonstration
 * Incremental versioning 
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 23:20]--[2020-07-01 Wed 23:28] =>  0:08
