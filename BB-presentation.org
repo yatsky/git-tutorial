@@ -304,9 +304,37 @@ This is an advanced option and requires everyone in the team to use Git.
 * Clock time                                                       :noexport:
 
 :LOGBOOK:
+CLOCK: [2020-07-15 Wed 20:23]--[2020-07-15 Wed 20:24] =>  0:01
 CLOCK: [2020-06-29 Mon 18:22]--[2020-06-29 Mon 18:30] =>  0:08
 CLOCK: [2020-06-27 Sat 22:26]--[2020-06-27 Sat 22:50] =>  0:24
 CLOCK: [2020-06-27 Sat 22:07]--[2020-06-27 Sat 22:18] =>  0:11
 :END:
 
+
+* Abstract                                                         :noexport:
+:LOGBOOK:
+CLOCK: [2020-07-15 Wed 20:24]--[2020-07-15 Wed 20:28] =>  0:04
+:END:
+** Tittle
+Git for easier, better and more robust research
+** Name of author(s)
+Yi Wang
+** Abstract 
+:LOGBOOK:
+CLOCK: [2020-07-18 Sat 08:21]--[2020-07-18 Sat 09:00] =>  0:39
+CLOCK: [2020-07-17 Fri 15:00]--[2020-07-17 Fri 15:00] =>  0:00
+CLOCK: [2020-07-15 Wed 20:38]--[2020-07-15 Wed 21:00] =>  0:22
+:END:
+
+In this seminar, I will introduce a battle-tested version control software, Git, to resolve frustrating problems arising from increasingly complex research activities. 
+
+Tools like Dropbox and Overleaf provide a certain level of version control, but fail to properly track *all* changes made during research development, and eventually no one knows who changed which part of the paper, when that change occurred, and why that change was necessary in the first place.
+
+The workspace is cluttered, too. We need to constantly clean up our folders and files or we will end up with "One file, many versions".
+
+Finally, sometimes missing a dollar sign could break LaTeX and hours are spent to locate the issue.
+
+Luckily, Git and a little creative thinking could resolve these problems and bring many more benefits to your research!
+
+Git offers (1) line-by-line change-tracking with information on author, datetime stamp and notes for the change, (2) clean workspace that hides many versions of a file behind the scene, (3) time-travel ability to change the state of the whole project back to a certain version that you choose. Git could easily be applied to control text files such as LaTeX and do file, and with some trade-off, it can control any file.
 
