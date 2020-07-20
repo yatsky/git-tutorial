@@ -27,7 +27,50 @@ Research nowadays
 - involves hundreds of iterations before publication,
 - spans months or years, and
 - has many collaboraters.
-** Problem
+** Research development as building a Lego
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:49]--[2020-07-20 Mon 11:52] =>  0:03
+:END:
+If we think of doing research as building the ISS out of lego, our situation is:
+- We need to build the ISS
+- We need to work with others to build it
+- Construction is intermittent
+- We often
+  - add new parts
+  - remove old parts
+  - replace old parts
+
+*** The old way to save our progress
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:52]--[2020-07-20 Mon 11:54] =>  0:02
+:END:
+We take a snapshot of the *whole* project when we /feel like/ it, or when Dropbox and Overleaf /feel like/ it. 
+We eventually only get the ISS.
+[[file:iss.jpg]]
+
+*** The new way to save our progress
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:54]--[2020-07-20 Mon 11:57] =>  0:03
+:END:
+We write an instruction on how and why to assemble a particular part
+and we eventually get a manual and the final ISS.
+[[file:iss-manual.jpg]]
+*** Two ways to build a Lego
+:LOGBOOK:
+CLOCK: [2020-07-20 Mon 11:42]--[2020-07-20 Mon 11:46] =>  0:04
+:END:
+#+BEGIN_EXPORT html
+<p class="two-col">
+The old way of version control is like taking a snapshot of everything you have built so far.
+<img src="iss.jpg" />
+</p>
+#+END_EXPORT
+#+BEGIN_EXPORT html
+<p class="two-col">
+The new way is to build a manual on how to build the ISS.
+<img src="iss-manual.jpg" />
+</p>
+#+END_EXPORT
 ** Problem                                                        :noexport:
 :LOGBOOK:
 CLOCK: [2020-07-01 Wed 20:39]--[2020-07-01 Wed 20:57] =>  0:18
