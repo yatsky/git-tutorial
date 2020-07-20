@@ -6,7 +6,7 @@
 #+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 #+REVEAL_THEME: black
-#+REVEAL_HLEVEL: 2
+#+REVEAL_HLEVEL: 1
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Git Introduction.">
 #+REVEAL_POSTAMBLE: <p> Created by Yi Wang. </p>
 #+REVEAL_EXTRA_JS:  { src: './image-size.js' }
