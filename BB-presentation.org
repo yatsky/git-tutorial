@@ -1,4 +1,4 @@
-#+Title: Introduction to Version Control/Git
+#+Title: Git for better, easier and more robust research
 #+Author: Yi Wang
 #+Email: wangy95@qut.edu.au
 #+REVEAL_INIT_OPTIONS: width:1200, height:800, margin: 0.1, minScale:0.2, maxScale:2.5, transition:'slide', slideNumber:true
