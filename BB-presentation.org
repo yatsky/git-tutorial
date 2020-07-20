@@ -40,7 +40,7 @@ If we think of doing research as building the ISS out of lego, our situation is:
   - remove old parts
   - replace old parts
 
-*** The old way to save our progress
+*** The old way of version control
 :LOGBOOK:
 CLOCK: [2020-07-20 Mon 11:52]--[2020-07-20 Mon 11:54] =>  0:02
 :END:
@@ -48,7 +48,7 @@ We take a snapshot of the *whole* project when we /feel like/ it, or when Dropbo
 We eventually only get the ISS.
 [[file:iss.jpg]]
 
-*** The new way to save our progress
+*** The new way of version control
 :LOGBOOK:
 CLOCK: [2020-07-20 Mon 11:54]--[2020-07-20 Mon 11:57] =>  0:03
 :END:
